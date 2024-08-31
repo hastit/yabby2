@@ -1,0 +1,47 @@
+{% extends 'yabbyapp/base.html' %}
+{%load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main>
+    <h1>Welcome to Your Dashboard</h1>
+    <div class="recent-sections">
+        <!-- Recently Studied Courses Section -->
+        <section class="recent-courses">
+            <h2>Recently Studied Courses</h2>
+            <div class="item-grid">
+                <!-- Example Course Items -->
+                <div class="item-card">Course 1</div>
+                <div class="item-card">Course 2</div>
+                <div class="item-card">Course 3</div>
+            </div>
+        </section>
+
+        <!-- Recently Added Notes Section -->
+        <section class="recent-notes">
+            <h2>Recently Added Notes</h2>
+            <div class="item-grid">
+                <!-- Example Note Items -->
+                <div class="item-card">Note 1</div>
+                <div class="item-card">Note 2</div>
+                <div class="item-card">Note 3</div>
+            </div>
+        </section>
+
+        <!-- Your Notebooks Section -->
+        <section class="your-notebooks">
+            <h2>Your Notebooks</h2>
+            <div class="item-grid">
+                <!-- Example Notebook Items -->
+                <div class="item-card">Notebook 1</div>
+                <div class="item-card">Notebook 2</div>
+                <div class="item-card">Notebook 3</div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}"> <!-- Specific CSS for home page -->
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'yabbyapp/base.html' %}
+{% load static %}
+
+{% block title %}Notes{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{% static 'css/notes.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>Niveau Lycée</h1>
+
+<div class="button-group">
+    <button class="toggle-btn" onclick="toggleContent('seconde')">Seconde</button>
+    <button class="toggle-btn" onclick="toggleContent('bac-general')">Bac Général</button>
+    <button class="toggle-btn" onclick="toggleContent('bac-tech')">Bac Technologique</button>
+</div>
+
+<div id="content-container">
+    <!-- Seconde Content -->
+    <div id="seconde" class="content-section">
+        <p>Select a subject to view details:</p>
+        <div class="subject-buttons">
+            <!-- Anchor tags to filter by subject -->
+            <a href="?subject=Mathématiques" class="subject-button" data-filter="math">Mathématiques</a>
+            <a href="?subject=Physique-chimie" class="subject-button" data-filter="physique">Physique-chimie</a>
+            <a href="?subject=Histoire" class="subject-button" data-filter="histoire">Histoire</a>
+            <a href="?subject=Géographie" class="subject-button" data-filter="geo">Géographie</a>
+            <a href="?subject=SES" class="subject-button" data-filter="ses">SES</a>
+            <a href="?subject=Sciences numériques et technologie" class="subject-button" data-filter="sciences">Sciences numériques et technologie</a>
+            <a href="?subject=Français" class="subject-button" data-filter="francais">Français</a>
+            <a href="?subject=SVT" class="subject-button" data-filter="svt">SVT</a>
+            <a href="?subject=Anglais" class="subject-button" data-filter="anglais">Anglais</a>
+        </div>
+        
+        <!-- New big box for all notes -->
+        <div class="all-notes-container">
+            <h2>All Notes</h2>
+            <div class="note-boxes">
+                {% for note in notes %}
+                <a href="{% url 'note_detail' note.pk %}" class="note-box">
+                    <img src="{% static 'images/note1_preview.jpg' %}" alt="{{ note.title }}" class="note-image">
+                    <div class="note-title">{{ note.title }}</div>
+                </a>
+                {% empty %}
+                <p>No notes available.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bac Général Content -->
+    <div id="bac-general" class="content-section" style="display: none;">
+        <p>Content for Bac Général</p>
+        <!-- Add your content for Bac Général here -->
+    </div>
+    
+    <!-- Bac Technologique Content -->
+    <div id="bac-tech" class="content-section" style="display: none;">
+        <p>Content for Bac Technologique</p>
+        <!-- Add your content for Bac Technologique here -->
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- Include this script to handle toggling content sections -->
+<script src="{% static 'js/notes.js' %}"></script>

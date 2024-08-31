@@ -1,0 +1,10 @@
+{% extends 'yabbyapp/base.html' %}
+
+{% block title %}Note Details{% endblock %}
+
+{% block content %}
+<h1>{{ note.title }}</h1>
+<p><strong>Subject:</strong> {{ note.subject }}</p>
+<p><strong>Description:</strong> {{ note.description }}</p>
+<p><strong>Content:</strong> {{ note.content }}</p>
+{% endblock %}

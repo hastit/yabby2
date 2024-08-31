@@ -1,0 +1,204 @@
+/* General styles for the notes page */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Adjust the main content area to fit with the navigation bars */
+.main-content {
+  margin-left: 200px; /* Adjust for the vertical navbar width */
+  padding: 20px; /* Add padding around the content */
+  padding-top: 80px; /* Adjust for the height of the top navbar */
+  background-color: #F9F9F9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: calc(100% - 220px); /* Ensure content doesn't stretch to the edge of the viewport */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Style the header */
+h1 {
+  font-size: 1.8em;
+  color: #353745;
+  margin-bottom: 20px;
+  text-align: center; /* Center align the header text */
+}
+
+/* Style the button group */
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center; /* Center align the buttons horizontally */
+  margin-bottom: 20px;
+}
+
+.toggle-btn {
+  background-color: #A29CD3; /* Button background color */
+  color: #FFFFFF; /* Button text color */
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #8a77d2; /* Darker shade on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Style the content sections */
+.content-section {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Center align the content sections */
+  max-width: 800px; /* Limit the maximum width of content sections */
+  display: none; /* Hide sections by default */
+}
+
+/* Adjust the position of the text in the content section */
+.content-section p {
+  margin-top: 0; /* Remove margin above the text */
+  margin-bottom: 20px; /* Add margin below the text */
+}
+
+/* Style the subject buttons */
+.subject-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center; /* Center align the buttons */
+}
+
+.subject-button {
+  display: inline-block;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 0.9em;
+  cursor: pointer;
+  color: #FFFFFF; /* Button text color */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Enhanced transition for smoother effect */
+}
+
+#seconde {
+  display: block; /* Initially show the 'Seconde' section */
+}
+
+/* Ensure the more specific styles for each subject take precedence */
+.subject-button[data-filter="math"] {
+  background-color: #FFB6C1; /* Soft Pink */
+}
+
+.subject-button[data-filter="physique"] {
+  background-color: #4A4A4A; /* Charcoal Gray */
+}
+
+.subject-button[data-filter="histoire"] {
+  background-color: #D0F0C0; /* Pastel Green */
+}
+
+.subject-button[data-filter="geo"] {
+  background-color: #B3E5FC; /* Sky Blue */
+}
+
+.subject-button[data-filter="ses"] {
+  background-color: #C6A0F6; /* Lavender */
+}
+
+.subject-button[data-filter="sciences"] {
+  background-color: #FFB6C1; /* Soft Pink */
+}
+
+.subject-button[data-filter="francais"] {
+  background-color: #4A4A4A; /* Charcoal Gray */
+}
+
+.subject-button[data-filter="svt"] {
+  background-color: #D0F0C0; /* Pastel Green */
+}
+
+.subject-button[data-filter="anglais"] {
+  background-color: #B3E5FC; /* Sky Blue */
+}
+
+/* Hover effects for subject buttons */
+.subject-button[data-filter="math"]:hover {
+  background-color: #FF9EAD; /* Darker Soft Pink */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="physique"]:hover {
+  background-color: #333333; /* Darker Charcoal Gray */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="histoire"]:hover {
+  background-color: #B8E0A6; /* Darker Pastel Green */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="geo"]:hover {
+  background-color: #80D8FF; /* Darker Sky Blue */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="ses"]:hover {
+  background-color: #A388F0; /* Darker Lavender */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="sciences"]:hover {
+  background-color: #FF9EAD; /* Darker Soft Pink */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="francais"]:hover {
+  background-color: #333333; /* Darker Charcoal Gray */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="svt"]:hover {
+  background-color: #B8E0A6; /* Darker Pastel Green */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.subject-button[data-filter="anglais"]:hover {
+  background-color: #80D8FF; /* Darker Sky Blue */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Style for note boxes */
+.note-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center; /* Center align the note boxes */
+  margin-top: 20px; /* Gap between the top navbar and the note boxes */
+}
+
+.note-box {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 200px; /* Adjust width as needed */
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+}
+
+.note-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.note-title {
+  padding: 10px;
+  font-size: 1em;
+  font-weight: bold;
+}
