@@ -13,16 +13,27 @@ class Note(models.Model):
         ('bac_general', 'Bac Général'),
         ('bac_tech', 'Bac Technologique'),
     ]
+    SUBJECT_CHOICES = [
+        ('Mathématiques', 'Mathématiques'),
+        ('Physique-chimie', 'Physique-chimie'),
+        ('Histoire', 'Histoire'),
+        ('Géographie', 'Géographie'),
+        ('SES', 'SES'),
+        ('Sciences numériques et technologie', 'Sciences numériques et technologie'),
+        ('Français', 'Français'),
+        ('SVT', 'SVT'),
+        ('Anglais', 'Anglais'),
+    ]
+
     
     title = models.CharField(max_length=200)
-    subject = models.CharField(max_length=200)
+    subject = models.CharField(max_length=50, choices=SUBJECT_CHOICES)
     description = models.TextField()
     pdf = models.FileField(upload_to='notes_pdfs/', blank=True, null=True)
     image = models.ImageField(upload_to='images/notes/', blank=True, null=True)
     preview_image = models.ImageField(upload_to='images/previews/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    section = models.CharField(max_length=20, choices=[('Seconde', 'Seconde'), ('Bac Général', 'Bac Général'), ('Bac Technologique', 'Bac Technologique')])
     grade_level = models.CharField(max_length=20, choices=GRADE_CHOICES, default='seconde')  # New field
 
     def __str__(self):

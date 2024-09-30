@@ -7,6 +7,8 @@ from .forms import NoteForm, SignUpForm
 from django.contrib import messages
 from django.urls import reverse
 from django.http import JsonResponse
+from urllib.parse import unquote
+import logging
 
 def index(request):
     return render(request, 'index.html')
@@ -91,7 +93,7 @@ def notes_list(request):
     notes = Note.objects.all()
 
     if selected_grade_level:
-        notes = notes.filter(section=selected_grade_level)
+        notes = notes.filter(grade_level=selected_grade_level)
     if selected_subject:
         notes = notes.filter(subject=selected_subject)
 
@@ -110,19 +112,36 @@ def note_detail(request, pk):
     note = get_object_or_404(Note, pk=pk)
     return render(request, 'yabbyapp/note_detail.html', {'note': note})
 
+
 @login_required
 def load_notes(request, grade, subject):
-    # Filter notes by grade and subject
-    notes = Note.objects.filter(section=grade, subject=subject)
+    # Decode subject and grade to handle URL encoded characters
+    subject = unquote(subject)
+    grade = unquote(grade)
     
-    # Prepare the data to return
-    notes_data = [{
-        'pk': note.pk,
-        'title': note.title,
-        'preview_image': note.preview_image.url if note.preview_image else None,
-    } for note in notes]
+    logging.info(f"Received request for grade: {grade}, subject: {subject}")
+    
+    try:
+        # Perform a case-insensitive query using __iexact for grade_level and subject
+        notes = Note.objects.filter(grade_level__iexact=grade, subject__iexact=subject)
 
-    return JsonResponse({'notes': notes_data})
+        if not notes.exists():
+            logging.warning(f"No notes found for grade: {grade}, subject: {subject}")
+            return JsonResponse({'error': 'No notes found for this grade and subject.'}, status=404)
+
+        # Prepare note data
+        notes_data = [{
+            'pk': note.pk,
+            'title': note.title,
+            'preview_image': note.preview_image.url if note.preview_image else None,
+        } for note in notes]
+
+        return JsonResponse({'notes': notes_data})
+
+    except Exception as e:
+        logging.error(f"Error loading notes: {str(e)}")
+        return JsonResponse({'error': str(e)}, status=500)
+
 
 @login_required
 def create_note(request):

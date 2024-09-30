@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import load_notes
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -20,7 +21,5 @@ urlpatterns = [
     path('notes/<str:grade>/<str:subject>/', views.load_notes, name='load_notes'),
     path('notes/<int:pk>/', views.note_detail, name='note_detail'),
     path('create_note/', views.create_note, name='create_note'),
-
-    path('notes/<str:grade>/<str:subject>/', views.load_notes, name='load_notes'),
-
+    path('notes/<str:grade_level>/<str:subject>/', views.notes_list, name='notes_list'),
 ]

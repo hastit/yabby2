@@ -6,8 +6,7 @@ from .models import Note, User
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ['title', 'description', 'image', 'pdf']
-
+        fields = ['title', 'subject', 'description', 'pdf', 'image', 'grade_level']
 
 class SignUpForm(UserCreationForm):
     class Meta:
