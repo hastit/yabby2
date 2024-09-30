@@ -22,3 +22,16 @@
 .item-card:hover {
   transform: translateY(-5px);
 }
+
+.note-preview-image {
+  width: 100%; /* Adjust as needed */
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.note-title {
+  font-size: 1rem; /* Adjust as needed */
+  color: #333;
+  text-decoration: none;
+}

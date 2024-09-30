@@ -1,0 +1,12 @@
+{% for note in notes %}
+  <a href="{% url 'note_detail' note.pk %}" class="note-box">
+      {% if note.preview_image %}
+          <img src="{{ note.preview_image.url }}" alt="{{ note.title }}" class="note-image">
+      {% else %}
+          <img src="{% static 'images/default_preview.jpg' %}" alt="Default Image" class="note-image">
+      {% endif %}
+      <div class="note-title">{{ note.title }}</div>
+  </a>
+{% empty %}
+  <p>No notes available.</p>
+{% endfor %}

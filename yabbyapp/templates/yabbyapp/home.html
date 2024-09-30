@@ -1,5 +1,6 @@
 {% extends 'yabbyapp/base.html' %}
-{%load static %}
+{% load static %}
+
 {% block title %}Home{% endblock %}
 
 {% block content %}
@@ -21,10 +22,20 @@
         <section class="recent-notes">
             <h2>Recently Added Notes</h2>
             <div class="item-grid">
-                <!-- Example Note Items -->
-                <div class="item-card">Note 1</div>
-                <div class="item-card">Note 2</div>
-                <div class="item-card">Note 3</div>
+                {% for note in recent_notes %}
+                    <div class="item-card">
+                        <a href="{% url 'note_detail' note.pk %}">
+                            {% if note.preview_image %}
+                                <img src="{{ note.preview_image.url }}" alt="{{ note.title }}" class="note-preview-image">
+                            {% else %}
+                                <img src="{% static 'images/default_preview.jpg' %}" alt="Default Image" class="note-preview-image">
+                            {% endif %}
+                            <div class="note-title">{{ note.title }}</div>
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>No recently added notes.</p>
+                {% endfor %}
             </div>
         </section>
 
@@ -43,5 +54,5 @@
 {% endblock %}
 
 {% block extra_styles %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}"> <!-- Specific CSS for home page -->
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}

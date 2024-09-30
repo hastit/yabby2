@@ -6,6 +6,7 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('login/', views.login, name='login'),
     path('home/', views.home, name='home'),
+    path('backpack/', views.backpack, name='backpack'),
     path('practice/', views.practice, name='practice'),
     path('profile/', views.profile, name='profile'),
     path('notifications/', views.notifications, name='notifications'),
@@ -13,8 +14,13 @@ urlpatterns = [
     path('settings/', views.settings, name='settings'),
     path('manuals/', views.manuals, name='manuals'),
     path('books/', views.books, name='books'),
-    path('notes/', views.notes_list, name='notes_list'),  # Updated to use notes_list
+    path('teacherslounge/', views.teacherslounge, name='teacherslounge'),
+    path('add_to_library/<int:note_id>/', views.add_to_library, name='add_to_library'),
+    path('notes_list/', views.notes_list, name='notes_list'),
+    path('notes/<str:grade>/<str:subject>/', views.load_notes, name='load_notes'),
     path('notes/<int:pk>/', views.note_detail, name='note_detail'),
     path('create_note/', views.create_note, name='create_note'),
-    path('teacherslounge/', views.teacherslounge, name='teacherslounge'),
+
+    path('notes/<str:grade>/<str:subject>/', views.load_notes, name='load_notes'),
+
 ]

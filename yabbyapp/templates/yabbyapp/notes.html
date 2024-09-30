@@ -17,33 +17,37 @@
 </div>
 
 <div id="content-container">
+  
     <!-- Seconde Content -->
     <div id="seconde" class="content-section">
         <p>Select a subject to view details:</p>
         <div class="subject-buttons">
-            <!-- Anchor tags to filter by subject -->
-            <a href="?subject=Mathématiques" class="subject-button" data-filter="math">Mathématiques</a>
-            <a href="?subject=Physique-chimie" class="subject-button" data-filter="physique">Physique-chimie</a>
-            <a href="?subject=Histoire" class="subject-button" data-filter="histoire">Histoire</a>
-            <a href="?subject=Géographie" class="subject-button" data-filter="geo">Géographie</a>
-            <a href="?subject=SES" class="subject-button" data-filter="ses">SES</a>
-            <a href="?subject=Sciences numériques et technologie" class="subject-button" data-filter="sciences">Sciences numériques et technologie</a>
-            <a href="?subject=Français" class="subject-button" data-filter="francais">Français</a>
-            <a href="?subject=SVT" class="subject-button" data-filter="svt">SVT</a>
-            <a href="?subject=Anglais" class="subject-button" data-filter="anglais">Anglais</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="Mathématiques">Mathématiques</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="Physique-chimie">Physique-chimie</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="Histoire">Histoire</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="Géographie">Géographie</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="SES">SES</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="Sciences numériques et technologie">Sciences numériques et technologie</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="Français">Français</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="SVT">SVT</a>
+            <a href="#" class="subject-button" data-grade="seconde" data-subject="Anglais">Anglais</a>
         </div>
-        
-        <!-- New big box for all notes -->
-        <div class="all-notes-container">
-            <h2>All Notes</h2>
+
+        <!-- Container for Seconde notes -->
+        <div class="all-notes-container" id="seconde-notes">
+            <h2>Seconde Notes</h2>
             <div class="note-boxes">
-                {% for note in notes %}
+                {% for note in seconde_notes %}
                 <a href="{% url 'note_detail' note.pk %}" class="note-box">
-                    <img src="{% static 'images/note1_preview.jpg' %}" alt="{{ note.title }}" class="note-image">
+                    {% if note.preview_image %}
+                        <img src="{{ note.preview_image.url }}" alt="{{ note.title }}" class="note-image">
+                    {% else %}
+                        <img src="{% static 'images/default_preview.jpg' %}" alt="Default Image" class="note-image">
+                    {% endif %}
                     <div class="note-title">{{ note.title }}</div>
                 </a>
                 {% empty %}
-                <p>No notes available.</p>
+                <p>No notes available for Seconde.</p>
                 {% endfor %}
             </div>
         </div>
@@ -51,14 +55,72 @@
     
     <!-- Bac Général Content -->
     <div id="bac-general" class="content-section" style="display: none;">
-        <p>Content for Bac Général</p>
-        <!-- Add your content for Bac Général here -->
+        <p>Select a subject to view details:</p>
+        <div class="subject-buttons">
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="Mathématiques">Mathématiques</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="Physique-chimie">Physique-chimie</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="Histoire">Histoire</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="Géographie">Géographie</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="SES">SES</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="Sciences numériques et technologie">Sciences numériques et technologie</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="Français">Français</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="SVT">SVT</a>
+            <a href="#" class="subject-button" data-grade="bac_general" data-subject="Anglais">Anglais</a>
+        </div>
+
+        <!-- Container for Bac Général notes -->
+        <div class="all-notes-container" id="bac-general-notes">
+            <h2>Bac Général Notes</h2>
+            <div class="note-boxes">
+                {% for note in bac_general_notes %}
+                <a href="{% url 'note_detail' note.pk %}" class="note-box">
+                    {% if note.preview_image %}
+                        <img src="{{ note.preview_image.url }}" alt="{{ note.title }}" class="note-image">
+                    {% else %}
+                        <img src="{% static 'images/default_preview.jpg' %}" alt="Default Image" class="note-image">
+                    {% endif %}
+                    <div class="note-title">{{ note.title }}</div>
+                </a>
+                {% empty %}
+                <p>No notes available for Bac Général.</p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     
     <!-- Bac Technologique Content -->
     <div id="bac-tech" class="content-section" style="display: none;">
-        <p>Content for Bac Technologique</p>
-        <!-- Add your content for Bac Technologique here -->
+        <p>Select a subject to view details:</p>
+        <div class="subject-buttons">
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="Mathématiques">Mathématiques</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="Physique-chimie">Physique-chimie</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="Histoire">Histoire</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="Géographie">Géographie</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="SES">SES</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="Sciences numériques et technologie">Sciences numériques et technologie</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="Français">Français</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="SVT">SVT</a>
+            <a href="#" class="subject-button" data-grade="bac_tech" data-subject="Anglais">Anglais</a>
+        </div>
+
+        <!-- Container for Bac Technologique notes -->
+        <div class="all-notes-container" id="bac-tech-notes">
+            <h2>Bac Technologique Notes</h2>
+            <div class="note-boxes">
+                {% for note in bac_tech_notes %}
+                <a href="{% url 'note_detail' note.pk %}" class="note-box">
+                    {% if note.preview_image %}
+                        <img src="{{ note.preview_image.url }}" alt="{{ note.title }}" class="note-image">
+                    {% else %}
+                        <img src="{% static 'images/default_preview.jpg' %}" alt="Default Image" class="note-image">
+                    {% endif %}
+                    <div class="note-title">{{ note.title }}</div>
+                </a>
+                {% empty %}
+                <p>No notes available for Bac Technologique.</p>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 

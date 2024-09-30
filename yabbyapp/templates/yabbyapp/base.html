@@ -1,4 +1,4 @@
-{%load static %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <script src="{% static 'js/notes.js' %}" defer></script>
 
-    {% block extra_styles %}{%endblock%}
-
+    {% block extra_styles %}{% endblock %}
 </head>
 <body>
     <!-- Top Navigation Bar -->
@@ -22,17 +21,25 @@
             <input type="text" class="search-bar" placeholder="Search...">
         </div>
         <div class="nav-right">
+            <!-- Dynamic XP and Coins - Add backend logic to fetch actual values -->
             <div class="xp-counter">XP: 200</div>
             <div class="coins-counter">Coins: 150</div>
-            <div class="profile">
-                <img src="{% static 'images/user_profile.jpg' %}" alt="User Profile">
-            </div>
+            {% if user.is_authenticated %}
+                <div class="profile">
+                    <img src="{% static 'images/user_profile.jpg' %}" alt="User Profile">
+                    <span>{{ user.username }}</span>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a>
+            {% endif %}
         </div>
     </nav>
 
     <!-- Vertical Navigation Bar -->
     <nav class="vertical-navbar">
         <!-- Icons with Font Awesome -->
+        <a href="{% url 'backpack' %}" class="nav-icon"><i class="fas fa-briefcase"></i> Backpack</a>
         <a href="{% url 'practice' %}" class="nav-icon"><i class="fas fa-dumbbell"></i> Practice</a>
         <a href="{% url 'notes_list' %}" class="nav-icon"><i class="fas fa-sticky-note"></i> Notes</a>
         <a href="{% url 'books' %}" class="nav-icon"><i class="fas fa-book"></i> Books</a>
@@ -49,5 +56,7 @@
         <!-- Default content or placeholder if needed -->
         {% endblock %}
     </div>
+
+    {% block extra_scripts %}{% endblock %}
 </body>
 </html>
